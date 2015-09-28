@@ -450,8 +450,8 @@ class medoo
 
 			if (isset($where['GROUP']))
 			{
-				if(is_array($where['GROUP'])){//liujianghuai --2015-9-28--支持group by多个字段
-                    		$group = '';
+				if(is_array($where['GROUP'])){
+                    		    $group = '';
 		                    foreach($where['GROUP'] as $v){
 		                        $group .= ' ' . $this->column_quote($v) .',';
 		                    }
