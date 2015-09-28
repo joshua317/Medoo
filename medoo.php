@@ -450,7 +450,15 @@ class medoo
 
 			if (isset($where['GROUP']))
 			{
-				$where_clause .= ' GROUP BY ' . $this->column_quote($where['GROUP']);
+				if(is_array($where['GROUP'])){//liujianghuai --2015-9-28--支持group by多个字段
+                    		$group = '';
+		                    foreach($where['GROUP'] as $v){
+		                        $group .= ' ' . $this->column_quote($v) .',';
+		                    }
+		                    $where_clause .= ' GROUP BY ' .trim($group,',');
+		                }else{
+		                    $where_clause .= ' GROUP BY ' . $this->column_quote($where['GROUP']);
+		                }
 
 				if (isset($where['HAVING']))
 				{
